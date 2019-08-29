@@ -77,6 +77,18 @@
                 
                 
                     <li >
+                        <a href="r/">R</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="python/">Python</a>
+                    </li>
+                
+                
+                
+                    <li >
                         <a href="faq/">FAQ</a>
                     </li>
                 
@@ -95,7 +107,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="faq/">
+                        <a rel="next" href="r/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -120,8 +132,6 @@
                 
             <li class="second-level"><a href="#quickstart-example">Quickstart Example</a></li>
                 
-            <li class="second-level"><a href="#installation">Installation</a></li>
-                
             <li class="second-level"><a href="#license">License</a></li>
                 
             <li class="second-level"><a href="#contact">Contact</a></li>
@@ -140,11 +150,11 @@ several plot styles, and more.</p>
 <p><a href="images/13.html"><img alt="" src="images/thumbs/thumb_example12.png" /></a>
 <a href="images/9.html"><img alt="" src="images/thumbs/thumb_example08.png" /></a>
 <a href="images/19.html"><img alt="" src="images/thumbs/thumb_example18.png" /></a></p>
-<p>The R Package
+<p>The <strong>R</strong> package
 <a href="http://cran.r-project.org/web/packages/dtw/index.html">dtw</a> provides
 the most complete, freely-available (GPL) implementation of Dynamic
-Time Warping-type (DTW) algorithms up to date.  The package
-<a href="https://pypi.org/project/dtwr/">dtwr</a> is a direct Python equivalent.</p>
+Time Warping-type (DTW) algorithms up to date.  The <strong>Python</strong> module
+<a href="https://pypi.org/project/dtwr/">dtwr</a> is its direct equivalent.</p>
 <p>The package is described in a <a href="http://www.jstatsoft.org/v31/i07/">companion
 paper</a>, including detailed
 instructions and extensive background on things like multivariate
@@ -205,8 +215,8 @@ Statistical Software makes available for free.</p>
 bioinformatics to chemistry to data mining, have a look at the list of
 <a href="http://scholar.google.it/scholar?oi=bibs&amp;hl=it&amp;cites=5151555337428350289">citing
 papers</a>.</p>
-<p>A link to prebuilt documentation is
-<a href="http://www.rdocumentation.org/packages/dtw">here</a>.</p>
+<p>The <a href="r/">R</a> and <a href="python/">Python</a> pages contain links to
+programming language-specific documentation.</p>
 <h3 id="citation">Citation</h3>
 <p>If you use <em>dtw</em>, do cite it in any publication reporting results
 obtained with this software. Please follow the directions given in
@@ -231,7 +241,7 @@ Intelligence in Medicine, 45(1), 11-34.
 <p>Go to a <a href="images/">gallery of sample plots</a> (straight out of
 the examples in the documentation).</p>
 <h3 id="quickstart-example">Quickstart Example</h3>
-<pre><code>## A noisy sine wave as query
+<pre><code class="R">## A noisy sine wave as query
 idx&lt;-seq(0,6.28,len=100);
 query&lt;-sin(idx)+runif(100)/10;
 
@@ -243,40 +253,34 @@ library(dtw);
 alignment&lt;-dtw(query,template,keep=TRUE);
 
 ## Display the warping curve, i.e. the alignment curve
-plot(alignment,type="threeway")
+plot(alignment,type=&quot;threeway&quot;)
 
 ## Align and plot with the Rabiner-Juang type VI-c unsmoothed recursion
 plot(
     dtw(query,template,keep=TRUE,
-        step=rabinerJuangStepPattern(6,"c")),
-    type="twoway",offset=-2);
+        step=rabinerJuangStepPattern(6,&quot;c&quot;)),
+    type=&quot;twoway&quot;,offset=-2);
 
 ## See the recursion relation, as formula and diagram
-rabinerJuangStepPattern(6,"c")
-plot(rabinerJuangStepPattern(6,"c"))
+rabinerJuangStepPattern(6,&quot;c&quot;)
+plot(rabinerJuangStepPattern(6,&quot;c&quot;))
 
 ## And much more!
 </code></pre>
+
 <p><a href="images/11.html"><img alt="" src="images/thumbs/thumb_example10.png" /></a> &emsp; &emsp; &emsp;
-<a href="https://rnotebook.io/anon/5f3ddc63ac17d7cf/notebooks/Welcome.ipynb">Try online!</a></p>
-<h3 id="installation">Installation</h3>
-<p>To install the latest <a href="http://cran.r-project.org/web/packages/dtw/index.html">stable
-build</a> of the
-package (hosted at CRAN), issue the following command in the R
-console:  </p>
-<pre><code>&gt; install.packages("dtw")
-</code></pre>
-<p>To get started, begin from the installed documentation:  </p>
-<pre><code>&gt; library(dtw) 
-&gt; demo(dtw)
-&gt; ?dtw 
-&gt; ?plot.dtw
-</code></pre>
+ <a href="https://rnotebook.io/anon/5f3ddc63ac17d7cf/notebooks/Welcome.ipynb">Try it online!</a></p>
 <h3 id="license">License</h3>
-<p>This software is distributed under the terms of the GNU General Public
-License Version 2, June 1991. The terms of this license are in a file
-called COPYING which you should have received with this software and
-which can be displayed by <code>RShowDoc("COPYING")</code>.</p>
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License
+along with this program.  If not, see <a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>.</p>
 <h3 id="contact">Contact</h3>
 <p><a href="https://sites.google.com/site/tonigiorgino/">Toni dot Giorgino</a> at
 gmail.com  </p>
@@ -298,6 +302,8 @@ through the <a href="http://www.ibf.cnr.it/">Istituto di Biofisica</a>.</p></div
         
         <hr>
         <p>
+        <small>DTW is &copy; 2006-2019, distributed under the <a href="https://cran.r-project.org/web/licenses/GPL-3">GPLv3 license terms</a>.<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
 
         
@@ -381,5 +387,5 @@ through the <a href="http://www.ibf.cnr.it/">Istituto di Biofisica</a>.</p></div
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-08-29 16:49:58
+Build Date UTC : 2019-08-29 18:14:08
 -->

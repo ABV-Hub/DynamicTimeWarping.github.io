@@ -76,6 +76,18 @@
                 
                 
                 
+                    <li >
+                        <a href="../r/">R</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../python/">Python</a>
+                    </li>
+                
+                
+                
                     <li class="active">
                         <a href="./">FAQ</a>
                     </li>
@@ -90,7 +102,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="..">
+                        <a rel="prev" href="../python/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -135,7 +147,7 @@
 
 <h1 id="frequently-asked-questions">Frequently asked questions</h1>
 <h2 id="general">General</h2>
-<h3 id="how-do-i-choose-a-step-pattern"><em>How do I choose a step pattern?</em></h3>
+<h4 id="how-do-i-choose-a-step-pattern"><em>How do I choose a step pattern?</em></h4>
 <p>This question has been raised on Stack Overflow; see
 <a href="http://stackoverflow.com/questions/30247132/r-dtw-package-cumulative-cost-matrix-decreases-at-some-points-along-the-path">here</a>,
 <a href="http://stats.stackexchange.com/questions/95920/searching-for-dynamic-time-warping-step-pattern">here</a>
@@ -149,7 +161,7 @@ A good first guess is <code>symmetric2</code> (the default), i.e.</p>
          )
 </code></pre>
 
-<h3 id="whats-all-the-fuss-about-normalization-whats-wrong-with-the-symmetric1-recursion-i-found-in-wikipediain-another-implementation"><em>What's all the fuss about normalization? What's wrong with the <code>symmetric1</code> recursion I found in Wikipedia/in another implementation?</em></h3>
+<h4 id="whats-all-the-fuss-about-normalization-whats-wrong-with-the-symmetric1-recursion-i-found-in-wikipediain-another-implementation"><em>What's all the fuss about normalization? What's wrong with the <code>symmetric1</code> recursion I found in Wikipedia/in another implementation?</em></h4>
 <p>An alignment computed with a non-normalizable step pattern has two
 serious drawbacks:</p>
 <ol>
@@ -168,11 +180,11 @@ recognition</a> book, and
 elsewhere. Make sure you familiarize yourself with those references.  </p>
 <p>TLDR: just stick to the default <code>symmetric2</code> recursion and use the
 value of <code>normalizedDistance</code>.</p>
-<h3 id="what-about-derivative-dynamic-time-warping"><em>What about </em>derivative<em> dynamic time warping?</em></h3>
+<h4 id="what-about-derivative-dynamic-time-warping"><em>What about </em>derivative<em> dynamic time warping?</em></h4>
 <p>Use the command
 <a href="http://stat.ethz.ch/R-manual/R-patched/library/base/html/diff.html"><code>diff</code></a> to preprocess
 the timeseries.</p>
-<h3 id="why-do-changes-in-distmethod-appear-to-have-no-effect"><em>Why do changes in <code>dist.method</code> appear to have no effect?</em></h3>
+<h4 id="why-do-changes-in-distmethod-appear-to-have-no-effect"><em>Why do changes in <code>dist.method</code> appear to have no effect?</em></h4>
 <p>Because it only makes a difference when aligning <em>multivariate</em>
 timeseries. It specifies the "pointwise" or local distance used
 (before the alignment) between the query feature <em>vector</em> at time <em>i</em>,
@@ -190,11 +202,11 @@ all.equal(al1,al2)
 
 </code></pre>
 
-<h3 id="can-the-timememory-requirements-be-relaxed"><em>Can the time/memory requirements be relaxed?</em></h3>
+<h4 id="can-the-timememory-requirements-be-relaxed"><em>Can the time/memory requirements be relaxed?</em></h4>
 <p>The first thing you should try is to set the <code>distance.only=TRUE</code>
 parameter, which skips backtracing and some object copies. Second,
 consider downsampling the input timeseries.</p>
-<h3 id="what-is-the-relation-between-dist-and-dtw"><em>What is the relation between <code>dist</code> and <code>dtw</code>?</em></h3>
+<h4 id="what-is-the-relation-between-dist-and-dtw"><em>What is the relation between <code>dist</code> and <code>dtw</code>?</em></h4>
 <p>There are two <em>very different</em>, <em>totally unrelated</em> uses for <code>dist</code>.
 This is explained at length in the paper, but let's summarize.</p>
 <ol>
@@ -211,17 +223,17 @@ This is explained at length in the paper, but let's summarize.</p>
     <code>dtwDist</code> convenience function.</li>
 </ol>
 <h2 id="clustering">Clustering</h2>
-<h3 id="can-i-use-the-dtw-distance-to-cluster-timeseries"><em>Can I use the DTW distance to cluster timeseries?</em></h3>
+<h4 id="can-i-use-the-dtw-distance-to-cluster-timeseries"><em>Can I use the DTW distance to cluster timeseries?</em></h4>
 <p>Of course. You need to start with a dissimilarity matrix, i.e. a
 matrix holding in <em>i,j</em> the DTW distance between timeseries <em>i</em> and
 <em>j</em>. This matrix is fed to the clustering functions. Obtaining the
 dissimilarity matrix is done differently depending on whether your
 timeseries are univariate or or multivariate: see the next questions.</p>
-<h3 id="how-do-i-cluster-univariate-timeseries-of-homogeneous-length"><em>How do I cluster univariate timeseries of homogeneous length?</em></h3>
+<h4 id="how-do-i-cluster-univariate-timeseries-of-homogeneous-length"><em>How do I cluster univariate timeseries of homogeneous length?</em></h4>
 <p>Arrange the timeseries (single-variate) in a matrix <em>as rows</em>. Make
 sure you use a symmetric pattern. See
 <a href="http://www.rdocumentation.org/packages/dtw/functions/dtwDist">dtwDist</a>.</p>
-<h3 id="how-do-i-cluster-multiple-multivariate-timeseries"><em>How do I cluster </em>multiple<em> </em>multivariate<em> timeseries?</em></h3>
+<h4 id="how-do-i-cluster-multiple-multivariate-timeseries"><em>How do I cluster </em>multiple<em> </em>multivariate<em> timeseries?</em></h4>
 <p>You have to handle the loop yourself. Assuming you have data arranged
 as <code>x[time,component,series]</code>, pseudocode would be:</p>
 <pre><code class="R"> for (i in 1:N) { 
@@ -230,7 +242,7 @@ as <code>x[time,component,series]</code>, pseudocode would be:</p>
                             distance.only=T )$normalizedDistance 
 </code></pre>
 
-<h3 id="can-i-compute-a-dtw-based-dissimilarity-matrix-out-of-timeseries-of-different-lengths"><em>Can I compute a DTW-based dissimilarity matrix out of timeseries of different lengths?</em></h3>
+<h4 id="can-i-compute-a-dtw-based-dissimilarity-matrix-out-of-timeseries-of-different-lengths"><em>Can I compute a DTW-based dissimilarity matrix out of timeseries of different lengths?</em></h4>
 <p>Either loop over the inputs yourself, or pad with NAs and use the
 following code:</p>
 <pre><code class="R">    dtwOmitNA &lt;-function (x,y)
@@ -247,7 +259,7 @@ following code:</p>
 </code></pre>
 
 <h2 id="non-discoveries">Non-discoveries</h2>
-<h3 id="ive-discovered-a-multidimensionalmultivariate-version-of-the-dtw-algorithm-shall-it-be-included-in-the-package"><em>I've discovered a multidimensional/multivariate version of the DTW algorithm! Shall it be included in the package?</em></h3>
+<h4 id="ive-discovered-a-multidimensionalmultivariate-version-of-the-dtw-algorithm-shall-it-be-included-in-the-package"><em>I've discovered a multidimensional/multivariate version of the DTW algorithm! Shall it be included in the package?</em></h4>
 <p>Alas, most likely you haven't. DTW had been "multidimensional" since
 its conception. Local distances are computed between <em>N</em>-dimensional
 vectors; feature vectors have been extensively used in speech
@@ -258,7 +270,7 @@ types of multi-dimensional local distances that the
 <a href="http://cran.r-project.org/web/packages/proxy/index.html">proxy</a>
 package does, as explained in section 3.6 of the <a href="http://www.jstatsoft.org/v31/i07/">paper in
 JSS</a>.</p>
-<h3 id="ive-discovered-a-realtimeearly-detection-version-of-the-dtw-algorithm"><em>I've discovered a realtime/early detection version of the DTW algorithm!</em></h3>
+<h4 id="ive-discovered-a-realtimeearly-detection-version-of-the-dtw-algorithm"><em>I've discovered a realtime/early detection version of the DTW algorithm!</em></h4>
 <p>Alas, most likely you haven't. A natural solution for real-time
 recognition of timeseries is "unconstrained DTW", which relaxes one or
 both endpoint boundary conditions. To my knowledge, the algorithm was
@@ -277,7 +289,7 @@ to learn about the clever algorithms or expositions by <a href="http://dx.doi.or
 alignments (at one or both ends) are available in the <em>dtw</em> package,
 as described in section 3.5 of the <a href="http://www.jstatsoft.org/v31/i07/">JSS
 paper</a>.</p>
-<h3 id="ive-discovered-a-bug-in-your-backtrack-algorithm"><em>I've discovered a bug in your backtrack algorithm!</em></h3>
+<h4 id="ive-discovered-a-bug-in-your-backtrack-algorithm"><em>I've discovered a bug in your backtrack algorithm!</em></h4>
 <p>Alas, most likely you haven't. You may be doing backtracking via
 steepest descent. It's not the correct way to do it. Here's a
 counterexample:</p>
@@ -311,6 +323,8 @@ get the diagonal 11+2*11+2*11+2*11=77 which is wrong.</p></div>
         
         <hr>
         <p>
+        <small>DTW is &copy; 2006-2019, distributed under the <a href="https://cran.r-project.org/web/licenses/GPL-3">GPLv3 license terms</a>.<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
 
         
