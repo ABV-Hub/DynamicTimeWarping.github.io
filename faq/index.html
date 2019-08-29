@@ -109,17 +109,200 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#this-is-a-faq">This is a FAQ</a></li>
-            <li class="second-level"><a href="#subtext">Subtext</a></li>
+        <li class="first-level active"><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+            <li class="second-level"><a href="#general">General</a></li>
                 
+                <li class="third-level"><a href="#how-do-i-choose-a-step-pattern">How do I choose a step pattern?</a></li>
+                <li class="third-level"><a href="#whats-all-the-fuss-about-normalization-whats-wrong-with-the-symmetric1-recursion-i-found-in-wikipediain-another-implementation">What's all the fuss about normalization? What's wrong with the symmetric1 recursion I found in Wikipedia/in another implementation?</a></li>
+                <li class="third-level"><a href="#what-about-derivative-dynamic-time-warping">What about derivative dynamic time warping?</a></li>
+                <li class="third-level"><a href="#why-do-changes-in-distmethod-appear-to-have-no-effect">Why do changes in dist.method appear to have no effect?</a></li>
+                <li class="third-level"><a href="#can-the-timememory-requirements-be-relaxed">Can the time/memory requirements be relaxed?</a></li>
+                <li class="third-level"><a href="#what-is-the-relation-between-dist-and-dtw">What is the relation between dist and dtw?</a></li>
+            <li class="second-level"><a href="#clustering">Clustering</a></li>
+                
+                <li class="third-level"><a href="#can-i-use-the-dtw-distance-to-cluster-timeseries">Can I use the DTW distance to cluster timeseries?</a></li>
+                <li class="third-level"><a href="#how-do-i-cluster-univariate-timeseries-of-homogeneous-length">How do I cluster univariate timeseries of homogeneous length?</a></li>
+                <li class="third-level"><a href="#how-do-i-cluster-multiple-multivariate-timeseries">How do I cluster multiple multivariate timeseries?</a></li>
+                <li class="third-level"><a href="#can-i-compute-a-dtw-based-dissimilarity-matrix-out-of-timeseries-of-different-lengths">Can I compute a DTW-based dissimilarity matrix out of timeseries of different lengths?</a></li>
+            <li class="second-level"><a href="#non-discoveries">Non-discoveries</a></li>
+                
+                <li class="third-level"><a href="#ive-discovered-a-multidimensionalmultivariate-version-of-the-dtw-algorithm-shall-it-be-included-in-the-package">I've discovered a multidimensional/multivariate version of the DTW algorithm! Shall it be included in the package?</a></li>
+                <li class="third-level"><a href="#ive-discovered-a-realtimeearly-detection-version-of-the-dtw-algorithm">I've discovered a realtime/early detection version of the DTW algorithm!</a></li>
+                <li class="third-level"><a href="#ive-discovered-a-bug-in-your-backtrack-algorithm">I've discovered a bug in your backtrack algorithm!</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="this-is-a-faq">This is a FAQ</h1>
-<p>what else</p>
-<h2 id="subtext">Subtext</h2>
-<p>en</p></div>
+<h1 id="frequently-asked-questions">Frequently asked questions</h1>
+<h2 id="general">General</h2>
+<h3 id="how-do-i-choose-a-step-pattern"><em>How do I choose a step pattern?</em></h3>
+<p>This question has been raised on Stack Overflow; see
+<a href="http://stackoverflow.com/questions/30247132/r-dtw-package-cumulative-cost-matrix-decreases-at-some-points-along-the-path">here</a>,
+<a href="http://stats.stackexchange.com/questions/95920/searching-for-dynamic-time-warping-step-pattern">here</a>
+and
+<a href="http://stackoverflow.com/questions/29399514/how-to-decide-which-steppattern-to-use-in-dtw-algorithm">here</a>.
+A good first guess is <code>symmetric2</code> (the default), i.e.</p>
+<pre><code>         g[i,j] = min(
+             g[i-1,j-1] + 2 * d[i  ,j  ] ,
+             g[i  ,j-1] +     d[i  ,j  ] ,
+             g[i-1,j  ] +     d[i  ,j  ] ,
+         )
+</code></pre>
+
+<h3 id="whats-all-the-fuss-about-normalization-whats-wrong-with-the-symmetric1-recursion-i-found-in-wikipediain-another-implementation"><em>What's all the fuss about normalization? What's wrong with the <code>symmetric1</code> recursion I found in Wikipedia/in another implementation?</em></h3>
+<p>An alignment computed with a non-normalizable step pattern has two
+serious drawbacks:</p>
+<ol>
+<li>It cannot be meaningfully normalized by timeseries length. Hence,
+    longer timeseries have naturally higher distances, in turn making
+    comparisons impossible.</li>
+<li>It favors diagonal steps, therefore it is not robust: two paths
+    differing for a small local change (eg. horizontal+vertical step
+    rather than diagonal) have very different costs.</li>
+</ol>
+<p>This is discussed in section 3.2 of the <a href="http://www.jstatsoft.org/v31/i07/">JSS
+paper</a>, section 4.2 of the <a href="http://dx.doi.org/10.1016/j.artmed.2008.11.007">AIIM
+paper</a>, section 4.7 of
+Rabiner and Juang's <a href="http://www.worldcat.org/oclc/26674087">Fundamentals of speech
+recognition</a> book, and
+elsewhere. Make sure you familiarize yourself with those references.  </p>
+<p>TLDR: just stick to the default <code>symmetric2</code> recursion and use the
+value of <code>normalizedDistance</code>.</p>
+<h3 id="what-about-derivative-dynamic-time-warping"><em>What about </em>derivative<em> dynamic time warping?</em></h3>
+<p>Use the command
+<a href="http://stat.ethz.ch/R-manual/R-patched/library/base/html/diff.html"><code>diff</code></a> to preprocess
+the timeseries.</p>
+<h3 id="why-do-changes-in-distmethod-appear-to-have-no-effect"><em>Why do changes in <code>dist.method</code> appear to have no effect?</em></h3>
+<p>Because it only makes a difference when aligning <em>multivariate</em>
+timeseries. It specifies the "pointwise" or local distance used
+(before the alignment) between the query feature <em>vector</em> at time <em>i</em>,
+<code>query[i,]</code> and the reference feature <em>vector</em> at time <em>j</em>, <code>ref[j,]</code>
+. Most distance functions coincide with the Euclidean distance in the
+one-dimensional case. Note the following:</p>
+<pre><code class="r">r&lt;-matrix(runif(10),5)  # A 2-D timeseries of length 5
+s&lt;-matrix(runif(10),5)  # Ditto
+
+myMethod&lt;-&quot;Manhattan&quot; # Or anything else
+al1&lt;-dtw(r,s,dist.method=myMethod)              # Passing the two inputs
+al2&lt;-dtw(proxy::dist(r,s,method=myMethod))      # Equivalent, passing the distance matrix
+
+all.equal(al1,al2) 
+
+</code></pre>
+
+<h3 id="can-the-timememory-requirements-be-relaxed"><em>Can the time/memory requirements be relaxed?</em></h3>
+<p>The first thing you should try is to set the <code>distance.only=TRUE</code>
+parameter, which skips backtracing and some object copies. Second,
+consider downsampling the input timeseries.</p>
+<h3 id="what-is-the-relation-between-dist-and-dtw"><em>What is the relation between <code>dist</code> and <code>dtw</code>?</em></h3>
+<p>There are two <em>very different</em>, <em>totally unrelated</em> uses for <code>dist</code>.
+This is explained at length in the paper, but let's summarize.</p>
+<ol>
+<li>If you have <strong>two multivariate</strong> timeseries, you can feed them to
+    <code>dist</code> to obtain a <em>local distance matrix</em>. You then pass this
+    matrix to dtw(). This is equivalent to passing the two matrices to
+    the dtw() function and specifying a <code>dist.method</code> (see also the
+    next question).</li>
+<li>If you have <strong>many univariate</strong> timeseries, instead of iterating
+    over all pairs and applying dtw() to each, you may feed the lot
+    (arranged as a matrix) to <code>dist</code> with <code>method="DTW"</code>. In this case
+    your code does NOT explicitly call dtw(). This is equivalent to
+    iterating over all pairs; it is also equivalent to using the
+    <code>dtwDist</code> convenience function.</li>
+</ol>
+<h2 id="clustering">Clustering</h2>
+<h3 id="can-i-use-the-dtw-distance-to-cluster-timeseries"><em>Can I use the DTW distance to cluster timeseries?</em></h3>
+<p>Of course. You need to start with a dissimilarity matrix, i.e. a
+matrix holding in <em>i,j</em> the DTW distance between timeseries <em>i</em> and
+<em>j</em>. This matrix is fed to the clustering functions. Obtaining the
+dissimilarity matrix is done differently depending on whether your
+timeseries are univariate or or multivariate: see the next questions.</p>
+<h3 id="how-do-i-cluster-univariate-timeseries-of-homogeneous-length"><em>How do I cluster univariate timeseries of homogeneous length?</em></h3>
+<p>Arrange the timeseries (single-variate) in a matrix <em>as rows</em>. Make
+sure you use a symmetric pattern. See
+<a href="http://www.rdocumentation.org/packages/dtw/functions/dtwDist">dtwDist</a>.</p>
+<h3 id="how-do-i-cluster-multiple-multivariate-timeseries"><em>How do I cluster </em>multiple<em> </em>multivariate<em> timeseries?</em></h3>
+<p>You have to handle the loop yourself. Assuming you have data arranged
+as <code>x[time,component,series]</code>, pseudocode would be:</p>
+<pre><code class="R"> for (i in 1:N) { 
+    for (j in 1:N) { 
+        result[i,j] &lt;- dtw( dist(x[,,i],x[,,j]), 
+                            distance.only=T )$normalizedDistance 
+</code></pre>
+
+<h3 id="can-i-compute-a-dtw-based-dissimilarity-matrix-out-of-timeseries-of-different-lengths"><em>Can I compute a DTW-based dissimilarity matrix out of timeseries of different lengths?</em></h3>
+<p>Either loop over the inputs yourself, or pad with NAs and use the
+following code:</p>
+<pre><code class="R">    dtwOmitNA &lt;-function (x,y)
+    {
+        a&lt;-na.omit(x)
+        b&lt;-na.omit(y)
+        return(dtw(a,b,distance.only=TRUE)$normalizedDistance)
+    }
+
+    ## create a new entry in the registry with two aliases
+    pr_DB$set_entry(FUN = dtwOmitNA, names = c(&quot;dtwOmitNA&quot;))
+
+    d&lt;-dist(dataset, method = &quot;dtwOmitNA&quot;) 
+</code></pre>
+
+<h2 id="non-discoveries">Non-discoveries</h2>
+<h3 id="ive-discovered-a-multidimensionalmultivariate-version-of-the-dtw-algorithm-shall-it-be-included-in-the-package"><em>I've discovered a multidimensional/multivariate version of the DTW algorithm! Shall it be included in the package?</em></h3>
+<p>Alas, most likely you haven't. DTW had been "multidimensional" since
+its conception. Local distances are computed between <em>N</em>-dimensional
+vectors; feature vectors have been extensively used in speech
+recognition since the '70s (see e.g. things like MFCC, RASTA,
+cepstrum, etc). Don't worry: several other people have "rediscovered"
+multivariate DTW already. The <em>dtw</em> package supports the numerous
+types of multi-dimensional local distances that the
+<a href="http://cran.r-project.org/web/packages/proxy/index.html">proxy</a>
+package does, as explained in section 3.6 of the <a href="http://www.jstatsoft.org/v31/i07/">paper in
+JSS</a>.</p>
+<h3 id="ive-discovered-a-realtimeearly-detection-version-of-the-dtw-algorithm"><em>I've discovered a realtime/early detection version of the DTW algorithm!</em></h3>
+<p>Alas, most likely you haven't. A natural solution for real-time
+recognition of timeseries is "unconstrained DTW", which relaxes one or
+both endpoint boundary conditions. To my knowledge, the algorithm was
+published as early as 1978 by <a href="http://dx.doi.org/10.1109/TASSP.1978.1163164">Rabiner, Rosenberg, and
+Levinson</a> under the name
+UE2-1: see e.g. the mini-review in (<a href="http://dx.doi.org/10.1016/j.artmed.2008.11.007">Tormene and Giorgino,
+2008</a>). Feel also free
+to learn about the clever algorithms or expositions by <a href="http://dx.doi.org/10.1109/ICDE.2007.368963">Sakurai et al.
+(2007)</a>; <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4470291">Latecki
+(2007)</a>;
+<a href="http://dx.doi.org/10.1109/ICPR.2006.467">Mori et al. (2006)</a>;
+<a href="http://dx.doi.org/10.1016%2F0022-2836%2881%2990087-5">Smith-Waterman
+(1981)</a>;
+<a href="http://dx.doi.org/10.1109/TASSP.1980.1163422">Rabiner and Schmidt
+(1980)</a>; etc. Open-ended
+alignments (at one or both ends) are available in the <em>dtw</em> package,
+as described in section 3.5 of the <a href="http://www.jstatsoft.org/v31/i07/">JSS
+paper</a>.</p>
+<h3 id="ive-discovered-a-bug-in-your-backtrack-algorithm"><em>I've discovered a bug in your backtrack algorithm!</em></h3>
+<p>Alas, most likely you haven't. You may be doing backtracking via
+steepest descent. It's not the correct way to do it. Here's a
+counterexample:</p>
+<pre><code>&gt; library(dtw) 
+&gt; dm&lt;-matrix(10,4,4)+diag(rep(1,4))
+&gt; al&lt;-dtw(dm,k=T,step=symmetric2)   
+&gt; al$localCostMatrix
+      [,1] [,2] [,3] [,4]
+[1,]  *11* *10*  10   10
+[2,]   10   11  *10*  10
+[3,]   10   10   11  *10*
+[4,]   10   10   10  *11*
+&gt; al$costMatrix
+      [,1] [,2] [,3] [,4]
+[1,]  &gt;11&lt;  21   31   41
+[2,]   21  &gt;32&lt;  41   51
+[3,]   31   41  &gt;52&lt;  61
+[4,]   41   51   61  &gt;72&lt;
+
+</code></pre>
+
+<p>The sum of costs along my warping path (above) is (starting from
+[1,1]) 11+10+2*10+2*10+11 = 72 which is correct (=g[4,4]) . If
+you follow your backtracking "steepest descent" algorithm (red), you
+get the diagonal 11+2*11+2*11+2*11=77 which is wrong.</p></div>
         
         
     </div>

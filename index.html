@@ -109,30 +109,187 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#welcome">Welcome</a></li>
-            <li class="second-level"><a href="#commands">Commands</a></li>
+        <li class="first-level active"><a href="#welcome-to-the-dynamic-time-warp-project">Welcome to the Dynamic Time Warp project!</a></li>
+            <li class="second-level"><a href="#description">Description</a></li>
                 
-            <li class="second-level"><a href="#project-layout">Project layout</a></li>
+            <li class="second-level"><a href="#documentation">Documentation</a></li>
+                
+            <li class="second-level"><a href="#citation">Citation</a></li>
+                
+            <li class="second-level"><a href="#plot-gallery">Plot gallery</a></li>
+                
+            <li class="second-level"><a href="#quickstart-example">Quickstart Example</a></li>
+                
+            <li class="second-level"><a href="#installation">Installation</a></li>
+                
+            <li class="second-level"><a href="#license">License</a></li>
+                
+            <li class="second-level"><a href="#contact">Contact</a></li>
+                
+            <li class="second-level"><a href="#commercial-support">Commercial support</a></li>
                 
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="welcome">Welcome</h1>
-<p>For full documentation visit <a href="https://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h1 id="welcome-to-the-dynamic-time-warp-project">Welcome to the Dynamic Time Warp project!</h1>
+<p>Comprehensive implementation of Dynamic Time Warping algorithms in R
+and Python.  Supports arbitrary local (eg symmetric, asymmetric,
+slope-limited) and global (windowing) constraints, fast native code,
+several plot styles, and more.</p>
+<p><a href="images/13.html"><img alt="" src="images/thumbs/thumb_example12.png" /></a>
+<a href="images/9.html"><img alt="" src="images/thumbs/thumb_example08.png" /></a>
+<a href="images/19.html"><img alt="" src="images/thumbs/thumb_example18.png" /></a></p>
+<p>The R Package
+<a href="http://cran.r-project.org/web/packages/dtw/index.html">dtw</a> provides
+the most complete, freely-available (GPL) implementation of Dynamic
+Time Warping-type (DTW) algorithms up to date.  The package
+<a href="https://pypi.org/project/dtwr/">dtwr</a> is a direct Python equivalent.</p>
+<p>The package is described in a <a href="http://www.jstatsoft.org/v31/i07/">companion
+paper</a>, including detailed
+instructions and extensive background on things like multivariate
+matching, open-end variants for real-time use, interplay between
+recursion types and length normalization, history, etc.</p>
+<h3 id="description">Description</h3>
+<p>DTW is a family of algorithms which compute the local stretch or
+compression to apply to the time axes of two timeseries in order to
+optimally map one (query) onto the other (reference). DTW outputs the
+remaining cumulative distance between the two and, if desired, the
+mapping itself (warping function). DTW is widely used e.g. for
+classification and clustering tasks in econometrics, chemometrics and
+general timeseries mining.</p>
+<p>The R implementation in <a href="http://www.jstatsoft.org/v31/i07/">dtw</a>
+provides:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
+<li>arbitrary windowing functions (global constraints), eg. the
+    <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01163055">Sakoe-Chiba
+    band</a>
+    and the <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1162641">Itakura
+    parallelogram</a>;</li>
+<li>arbitrary transition types (also known as step patterns, slope
+    constraints, local constraints, or DP-recursion rules). This
+    includes dozens of well-known types:<ul>
+<li>all step patterns classified by
+    <a href="http://www.worldcat.org/oclc/26674087">Rabiner-Juang</a>,
+    <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1163055">Sakoe-Chiba</a>,
+    and <a href="http://hdl.handle.net/1721.1/27909">Rabiner-Myers</a>;</li>
+<li>symmetric and asymmetric;</li>
+<li>Rabiner's smoothed variants;</li>
+<li>arbitrary, user-defined slope constraints</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+</li>
+<li>partial matches: open-begin, open-end, substring matches</li>
+<li>proper, pattern-dependent, normalization (exact average distance per
+    step)</li>
+<li>the Minimum Variance Matching (MVM) algorithm <a href="http://dx.doi.org/10.1016/j.patcog.2007.03.004">(Latecki et
+    al.)</a></li>
+</ul>
+<p>Multivariate timeseries can be aligned with arbitrary local distance
+definitions, leveraging the <a href="https://www.rdocumentation.org/packages/proxy/versions/0.4-23/topics/dist"><code>proxy::dist</code></a> (R) or
+<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html"><code>scipy.spatial.distance.cdist</code></a> (Python) functions. </p>
+<p>In addition to computing alignments, the package provides:</p>
+<ul>
+<li>methods for plotting alignments and warping functions in several
+    classic styles (see plot gallery);</li>
+<li>graphical representation of step patterns;</li>
+<li>functions for applying a warping function, either direct or inverse;</li>
+<li>fast native (C) core.</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<p>The best place to learn how to use the package (and a hopefully a decent
+deal of background on DTW) is the companion paper <a href="http://www.jstatsoft.org/v31/i07/">Computing and
+Visualizing Dynamic Time Warping Alignments in R: The dtw
+Package</a>, which the Journal of
+Statistical Software makes available for free.</p>
+<p>To have a look at how the <em>dtw</em> package is used in domains ranging from
+bioinformatics to chemistry to data mining, have a look at the list of
+<a href="http://scholar.google.it/scholar?oi=bibs&amp;hl=it&amp;cites=5151555337428350289">citing
+papers</a>.</p>
+<p>A link to prebuilt documentation is
+<a href="http://www.rdocumentation.org/packages/dtw">here</a>.</p>
+<h3 id="citation">Citation</h3>
+<p>If you use <em>dtw</em>, do cite it in any publication reporting results
+obtained with this software. Please follow the directions given in
+<code>citation("dtw")</code>, i.e. cite:</p>
+<blockquote>
+<p>Toni Giorgino (2009). <em>Computing and Visualizing Dynamic Time Warping
+Alignments in R: The dtw Package.</em> Journal of Statistical Software,
+31(7), 1-24,
+<a href="http://dx.doi.org/10.18637/jss.v031.i07">doi:10.18637/jss.v031.i07</a>.</p>
+</blockquote>
+<p>When using partial matching (unconstrained endpoints via the
+<code>open.begin</code>/<code>open.end</code> options) and/or normalization strategies, please
+also cite:</p>
+<blockquote>
+<p>Paolo Tormene, Toni Giorgino, Silvana Quaglini, Mario Stefanelli
+(2008). Matching Incomplete Time Series with Dynamic Time Warping: An
+Algorithm and an Application to Post-Stroke Rehabilitation. Artificial
+Intelligence in Medicine, 45(1), 11-34.
+<a href="http://dx.doi.org/10.1016/j.artmed.2008.11.007">doi:10.1016/j.artmed.2008.11.007</a></p>
+</blockquote>
+<h3 id="plot-gallery">Plot gallery</h3>
+<p>Go to a <a href="images/">gallery of sample plots</a> (straight out of
+the examples in the documentation).</p>
+<h3 id="quickstart-example">Quickstart Example</h3>
+<pre><code>## A noisy sine wave as query
+idx&lt;-seq(0,6.28,len=100);
+query&lt;-sin(idx)+runif(100)/10;
+
+## A cosine is for template; sin and cos are offset by 25 samples
+template&lt;-cos(idx)
+
+## Find the best match with the canonical recursion formula
+library(dtw);
+alignment&lt;-dtw(query,template,keep=TRUE);
+
+## Display the warping curve, i.e. the alignment curve
+plot(alignment,type="threeway")
+
+## Align and plot with the Rabiner-Juang type VI-c unsmoothed recursion
+plot(
+    dtw(query,template,keep=TRUE,
+        step=rabinerJuangStepPattern(6,"c")),
+    type="twoway",offset=-2);
+
+## See the recursion relation, as formula and diagram
+rabinerJuangStepPattern(6,"c")
+plot(rabinerJuangStepPattern(6,"c"))
+
+## And much more!
+</code></pre>
+<p><a href="images/11.html"><img alt="" src="images/thumbs/thumb_example10.png" /></a> &emsp; &emsp; &emsp;
+<a href="https://rnotebook.io/anon/5f3ddc63ac17d7cf/notebooks/Welcome.ipynb">Try online!</a></p>
+<h3 id="installation">Installation</h3>
+<p>To install the latest <a href="http://cran.r-project.org/web/packages/dtw/index.html">stable
+build</a> of the
+package (hosted at CRAN), issue the following command in the R
+console:  </p>
+<pre><code>&gt; install.packages("dtw")
+</code></pre>
+<p>To get started, begin from the installed documentation:  </p>
+<pre><code>&gt; library(dtw) 
+&gt; demo(dtw)
+&gt; ?dtw 
+&gt; ?plot.dtw
+</code></pre>
+<h3 id="license">License</h3>
+<p>This software is distributed under the terms of the GNU General Public
+License Version 2, June 1991. The terms of this license are in a file
+called COPYING which you should have received with this software and
+which can be displayed by <code>RShowDoc("COPYING")</code>.</p>
+<h3 id="contact">Contact</h3>
+<p><a href="https://sites.google.com/site/tonigiorgino/">Toni dot Giorgino</a> at
+gmail.com  </p>
+<p>Istituto di Neuroscienze (ISIB-IN-CNR)<br />
+Consiglio Nazionale delle Ricerche<br />
+Padova, Italy  </p>
+<p>Academic and public research institutions are welcome to invite me for
+discussions or seminars. Please indicate dates, preferred format, and
+audience type.</p>
+<h3 id="commercial-support">Commercial support</h3>
+<p>I am also interested in hearing from companies seeking to use DTW in a
+commercial setting. I may provide on-site and/or remote consultancy
+through the <a href="http://www.ibf.cnr.it/">Istituto di Biofisica</a>.</p></div>
         
         
     </div>
@@ -224,5 +381,5 @@ docs/
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-08-29 16:05:15
+Build Date UTC : 2019-08-29 16:49:58
 -->
