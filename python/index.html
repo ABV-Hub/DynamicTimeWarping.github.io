@@ -201,7 +201,8 @@ rabinerJuangStepPattern(6,&quot;c&quot;).plot()
 <p><a href="../py-images/Figure_1.png"><img alt="" src="../py-images/thumbs/Figure_1.png" /></a>
 <a href="../py-images/Figure_2.png"><img alt="" src="../py-images/thumbs/Figure_2.png" /></a>
 <a href="../py-images/Figure_3.png"><img alt="" src="../py-images/thumbs/Figure_3.png" /></a> &emsp; 
-<a href="https://rnotebook.io/anon/5f3ddc63ac17d7cf/notebooks/Welcome.ipynb">Try online!</a></p>
+<!-- <a href="https://mybinder.org/v2/gh/DynamicTimeWarping/notebooks/master?filepath=quickstart%2FPython.ipynb">Try online!</a> -->
+<a href="https://colab.research.google.com/drive/1-fbhBlKRrEG8jkqoBAWOAzWaOarDQcDp">Try online!</a></p>
 <h2 id="implementation-differences">Implementation differences</h2>
 <h3 id="indices-are-0-based">Indices are 0-based</h3>
 <p>R uses 1-based indexing, whereas Python uses 0-based arrays. Wherever
@@ -210,10 +211,9 @@ indices are returned (most notably in the <code>.index1</code>, <code>.index2</c
 assumed to be 0-based in Python. Hence, indices can be used as
 subscripts in both environments as expected.</p>
 <h3 id="object-orientation">Object-orientation</h3>
-<p>The Python OO interface is the same as the R one. Therefore, OO method
-calls use the postfix "dot" notation. This mostly affects the <code>plot()</code>
-methods. Note that non-overloaded functional style such as
-<code>dtwPlotThreeWay</code> are unaffected.  Hence:</p>
+<p>Python OO method calls use the postfix "dot" notation. This mostly
+affects the <code>plot()</code> methods. Note that non-overloaded functional
+style such as <code>dtwPlotThreeWay</code> are unaffected.  Hence:</p>
 <pre><code>## In R
 plot(alignment, type=&quot;threeway&quot;)
 
