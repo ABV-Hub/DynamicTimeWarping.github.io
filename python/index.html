@@ -11,7 +11,7 @@
     <link rel="../img/favicon.ico">
 
     
-    <title>Python - The Comprehensive Dynamic Time Warping project</title>
+    <title>Python - The Comprehensive DTW library</title>
     
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -61,7 +61,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href="..">The Comprehensive Dynamic Time Warping project</a>
+            <a class="navbar-brand" href="..">The Comprehensive DTW library</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -130,10 +130,11 @@
                 
             <li class="second-level"><a href="#implementation-differences">Implementation differences</a></li>
                 
-                <li class="third-level"><a href="#indexing-is-0-based">Indexing is 0-based</a></li>
+                <li class="third-level"><a href="#indices-are-0-based">Indices are 0-based</a></li>
                 <li class="third-level"><a href="#object-orientation">Object-orientation</a></li>
                 <li class="third-level"><a href="#the-alignment-class">The alignment class</a></li>
-                <li class="third-level"><a href="#dot-vs-underscore-in-argument-names">Dot vs underscore in argument names</a></li>
+                <li class="third-level"><a href="#dots-vs-underscores">Dots vs underscores</a></li>
+                <li class="third-level"><a href="#plots">Plots</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -141,8 +142,7 @@
 <h1 id="the-dtwr-package-for-python">The <em>dtwr</em> package for Python</h1>
 <p>The <a href="https://pypi.org/project/dtwr/">dtwr</a> module is a faithful Python
 equivalent of the R package; it provides the same algorithms and
-options. The graphing functions have been re-implemented within the
-<code>matplotlib</code> framework.</p>
+options. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The module name is <code>dtwr</code> (note the final <code>r</code>) because of clashes
@@ -203,40 +203,46 @@ rabinerJuangStepPattern(6,&quot;c&quot;).plot()
 <a href="../py-images/Figure_3.png"><img alt="" src="../py-images/thumbs/Figure_3.png" /></a> &emsp; 
 <a href="https://rnotebook.io/anon/5f3ddc63ac17d7cf/notebooks/Welcome.ipynb">Try online!</a></p>
 <h2 id="implementation-differences">Implementation differences</h2>
-<h3 id="indexing-is-0-based">Indexing is 0-based</h3>
+<h3 id="indices-are-0-based">Indices are 0-based</h3>
 <p>R uses 1-based indexing, whereas Python uses 0-based arrays. Wherever
 indices are returned (most notably in the <code>.index1</code>, <code>.index2</code>,
 <code>.index1s</code> and <code>.index2s</code> attributes of alignments), these must be
-assumed to be 0-based in Python. Of note, indices may be used as
-subscripts as expected in both environments.</p>
+assumed to be 0-based in Python. Hence, indices can be used as
+subscripts in both environments as expected.</p>
 <h3 id="object-orientation">Object-orientation</h3>
-<p>The Python interface has been modeled to be as close as possible to
-the R one. Therefore, object-orientation method calls is only used for
-the <code>plot()</code> functions. Note that:</p>
+<p>The Python OO interface is the same as the R one. Therefore, OO method
+calls use the postfix "dot" notation. This mostly affects the <code>plot()</code>
+methods. Note that non-overloaded functional style such as
+<code>dtwPlotThreeWay</code> are unaffected.  Hence:</p>
 <pre><code>## In R
 plot(alignment, type=&quot;threeway&quot;)
 
 ## In Python
 alignment.plot(type=&quot;threeway&quot;)
+## or
+dtwPlotThreeWay(alignment)
 </code></pre>
 
-<p>Non-overloaded functions with explicit names such as <code>dtwPlotThreeWay</code>
-work without changes.</p>
 <h3 id="the-alignment-class">The alignment class</h3>
 <p>The class name of alignment objects in <code>DTW</code> (all capitals) in Python.
 Attributes are accessed with the usual "dot" notation (R uses <code>$</code> as
 for lists).</p>
-<h3 id="dot-vs-underscore-in-argument-names">Dot vs underscore in argument names</h3>
+<h3 id="dots-vs-underscores">Dots vs underscores</h3>
 <p>R commonly uses the dot (<code>.</code>) separator for function argument names,
 while Python uses the underscore (<code>_</code>) for the same purpose. The
-function prototypes reflect this difference. Also, only R allows
-abbreviated argument names. Therefore:</p>
+function prototypes reflect this difference. Also, Python does not
+accept abbreviated argument names. Therefore:</p>
 <pre><code>## In R
 alignment = dtw(query, template, keep.int=TRUE)
 
 ## In Python
 alignment = dtw(query, template, keep_internals=True)
-</code></pre></div>
+</code></pre>
+
+<h3 id="plots">Plots</h3>
+<p>The graphing functions have been re-implemented within the
+<code>matplotlib</code> framework. They return <code>axes</code> objects, which can be used
+to customize the plot appearance.</p></div>
         
         
     </div>
