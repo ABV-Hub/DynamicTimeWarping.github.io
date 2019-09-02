@@ -11,7 +11,7 @@
     <link rel="img/favicon.ico">
 
     
-    <title>Home - The Comprehensive DTW library</title>
+    <title>Home - The DTW package</title>
     
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -39,6 +39,23 @@
     </script>
 
     
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-3201754-1', 'dynamictimewarping.github.io');
+    ga('send', 'pageview');
+    </script>
+    
 
      
 </head>
@@ -61,7 +78,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href=".">The Comprehensive DTW library</a>
+            <a class="navbar-brand" href=".">The DTW package</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -77,13 +94,13 @@
                 
                 
                     <li >
-                        <a href="r/">R</a>
+                        <a href="r/">DTW for R</a>
                     </li>
                 
                 
                 
                     <li >
-                        <a href="python/">Python</a>
+                        <a href="python/">DTW for Python</a>
                     </li>
                 
                 
@@ -130,7 +147,9 @@
                 
             <li class="second-level"><a href="#plot-gallery">Plot gallery</a></li>
                 
-            <li class="second-level"><a href="#quickstart-example">Quickstart Example</a></li>
+            <li class="second-level"><a href="#languages">Languages</a></li>
+                
+            <li class="second-level"><a href="#quickstart">Quickstart</a></li>
                 
             <li class="second-level"><a href="#license">License</a></li>
                 
@@ -153,8 +172,9 @@ several plot styles, and more.</p>
 <p>The <a href="http://cran.r-project.org/web/packages/dtw/index.html">R package
 <strong>dtw</strong></a>
 provides the most complete, freely-available (GPL) implementation of
-Dynamic Time Warping-type (DTW) algorithms up to date.  The <a href="https://pypi.org/project/dtwr/"><strong>dtwr</strong>
-module on PyPi</a> is its direct Python equivalent.</p>
+Dynamic Time Warping-type (DTW) algorithms up to date.  The
+<a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> module on PyPi</a>
+is its direct Python equivalent.</p>
 <p>The package is described in a <a href="http://www.jstatsoft.org/v31/i07/">companion
 paper</a>, including detailed
 instructions and extensive background on things like multivariate
@@ -168,7 +188,7 @@ remaining cumulative distance between the two and, if desired, the
 mapping itself (warping function). DTW is widely used e.g. for
 classification and clustering tasks in econometrics, chemometrics and
 general timeseries mining.</p>
-<p>The R implementation in <a href="http://www.jstatsoft.org/v31/i07/">dtw</a>
+<p>The implementation in <a href="http://www.jstatsoft.org/v31/i07/">dtw</a>
 provides:</p>
 <ul>
 <li>arbitrary windowing functions (global constraints), eg. the
@@ -221,55 +241,33 @@ programming language-specific documentation.</p>
 <p>If you use <em>dtw</em>, do cite it in any publication reporting results
 obtained with this software. Please follow the directions given in
 <code>citation("dtw")</code>, i.e. cite:</p>
-<blockquote>
-<p>Toni Giorgino (2009). <em>Computing and Visualizing Dynamic Time Warping
-Alignments in R: The dtw Package.</em> Journal of Statistical Software,
-31(7), 1-24,
-<a href="http://dx.doi.org/10.18637/jss.v031.i07">doi:10.18637/jss.v031.i07</a>.</p>
-</blockquote>
+<ul>
+<li>Toni Giorgino (2009). <em>Computing and Visualizing Dynamic Time Warping
+  Alignments in R: The dtw Package.</em> Journal of Statistical Software,
+  31(7), 1-24, <a href="http://dx.doi.org/10.18637/jss.v031.i07">doi:10.18637/jss.v031.i07</a>.</li>
+</ul>
 <p>When using partial matching (unconstrained endpoints via the
 <code>open.begin</code>/<code>open.end</code> options) and/or normalization strategies, please
 also cite:</p>
-<blockquote>
-<p>Paolo Tormene, Toni Giorgino, Silvana Quaglini, Mario Stefanelli
-(2008). Matching Incomplete Time Series with Dynamic Time Warping: An
-Algorithm and an Application to Post-Stroke Rehabilitation. Artificial
-Intelligence in Medicine, 45(1), 11-34.
-<a href="http://dx.doi.org/10.1016/j.artmed.2008.11.007">doi:10.1016/j.artmed.2008.11.007</a></p>
-</blockquote>
+<ul>
+<li>Paolo Tormene, Toni Giorgino, Silvana Quaglini, Mario Stefanelli
+  (2008). Matching Incomplete Time Series with Dynamic Time Warping: An
+  Algorithm and an Application to Post-Stroke Rehabilitation. Artificial
+  Intelligence in Medicine, 45(1), 11-34.
+  <a href="http://dx.doi.org/10.1016/j.artmed.2008.11.007">doi:10.1016/j.artmed.2008.11.007</a></li>
+</ul>
 <h3 id="plot-gallery">Plot gallery</h3>
-<p>Go to a <a href="images/">gallery of sample plots</a> (straight out of
-the examples in the documentation).</p>
-<h3 id="quickstart-example">Quickstart Example</h3>
-<pre><code class="R">## A noisy sine wave as query
-idx&lt;-seq(0,6.28,len=100);
-query&lt;-sin(idx)+runif(100)/10;
-
-## A cosine is for template; sin and cos are offset by 25 samples
-template&lt;-cos(idx)
-
-## Find the best match with the canonical recursion formula
-library(dtw);
-alignment&lt;-dtw(query,template,keep=TRUE);
-
-## Display the warping curve, i.e. the alignment curve
-plot(alignment,type=&quot;threeway&quot;)
-
-## Align and plot with the Rabiner-Juang type VI-c unsmoothed recursion
-plot(
-    dtw(query,template,keep=TRUE,
-        step=rabinerJuangStepPattern(6,&quot;c&quot;)),
-    type=&quot;twoway&quot;,offset=-2);
-
-## See the recursion relation, as formula and diagram
-rabinerJuangStepPattern(6,&quot;c&quot;)
-plot(rabinerJuangStepPattern(6,&quot;c&quot;))
-
-## And much more!
-</code></pre>
-
-<p><a href="images/11.html"><img alt="" src="images/thumbs/thumb_example10.png" /></a> &emsp; &emsp; &emsp;
- <a href="https://rnotebook.io/anon/5f3ddc63ac17d7cf/notebooks/Welcome.ipynb">Try it online!</a></p>
+<p>See a <a href="images/">gallery of sample plots</a>, straight out of
+the examples in the documentation.</p>
+<h3 id="languages">Languages</h3>
+<ul>
+<li>R: in the <a href="http://cran.r-project.org/web/packages/dtw/index.html">dtw package</a> on CRAN</li>
+<li>Python: as the <a href="https://pypi.org/project/dtw-python/"><code>dtw-python</code></a> pip package</li>
+</ul>
+<p>Both are available for all major platforms.</p>
+<h3 id="quickstart">Quickstart</h3>
+<p>Ready-to-try examples are available in the <a href="r">DTW for R</a> and <a href="python">DTW for
+Python</a> pages.</p>
 <h3 id="license">License</h3>
 <p>This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -293,8 +291,9 @@ discussions or seminars. Please indicate dates, preferred format, and
 audience type.</p>
 <h3 id="commercial-support">Commercial support</h3>
 <p>I am also interested in hearing from companies seeking to use DTW in a
-commercial setting. On-site and/or remote consultancy can be
-contracted through the <a href="http://www.ibf.cnr.it/">Biophysics Institute</a>.</p></div>
+commercial setting.  Companies may contract on-site and
+remote research and development on DTW-based projects through the
+<a href="http://www.ibf.cnr.it/">Biophysics Institute</a>.</p></div>
         
         
     </div>
@@ -388,5 +387,5 @@ contracted through the <a href="http://www.ibf.cnr.it/">Biophysics Institute</a>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-08-30 21:06:19
+Build Date UTC : 2019-09-02 14:56:50
 -->

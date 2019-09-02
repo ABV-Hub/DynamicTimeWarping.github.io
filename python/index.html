@@ -11,7 +11,7 @@
     <link rel="../img/favicon.ico">
 
     
-    <title>Python - The Comprehensive DTW library</title>
+    <title>DTW for Python - The DTW package</title>
     
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -39,6 +39,23 @@
     </script>
 
     
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-3201754-1', 'dynamictimewarping.github.io');
+    ga('send', 'pageview');
+    </script>
+    
 
      
 </head>
@@ -61,7 +78,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href="..">The Comprehensive DTW library</a>
+            <a class="navbar-brand" href="..">The DTW package</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -77,13 +94,13 @@
                 
                 
                     <li >
-                        <a href="../r/">R</a>
+                        <a href="../r/">DTW for R</a>
                     </li>
                 
                 
                 
                     <li class="active">
-                        <a href="./">Python</a>
+                        <a href="./">DTW for Python</a>
                     </li>
                 
                 
@@ -128,10 +145,10 @@
                 
             <li class="second-level"><a href="#quickstart">Quickstart</a></li>
                 
-            <li class="second-level"><a href="#implementation-differences">Implementation differences</a></li>
+            <li class="second-level"><a href="#differences-with-r">Differences with R</a></li>
                 
                 <li class="third-level"><a href="#indices-are-0-based">Indices are 0-based</a></li>
-                <li class="third-level"><a href="#object-orientation">Object-orientation</a></li>
+                <li class="third-level"><a href="#object-oriented-methods">Object-oriented methods</a></li>
                 <li class="third-level"><a href="#the-alignment-class">The alignment class</a></li>
                 <li class="third-level"><a href="#dots-vs-underscores">Dots vs underscores</a></li>
                 <li class="third-level"><a href="#plots">Plots</a></li>
@@ -167,7 +184,7 @@ issue the following command:</p>
 auto-generated from the R version. It may contain 
 minor inconsistencies.</p>
 </div>
-<p>The package documentation can also be <a href="../html/api.html">browsed
+<p>The package documentation can also be <a href="py-api/html/index.html">browsed
 online</a>.</p>
 <h2 id="quickstart">Quickstart</h2>
 <pre><code class="python">import numpy as np
@@ -203,14 +220,14 @@ rabinerJuangStepPattern(6,&quot;c&quot;).plot()
 <a href="../py-images/Figure_3.png"><img alt="" src="../py-images/thumbs/Figure_3.png" /></a> &emsp; 
 <!-- <a href="https://mybinder.org/v2/gh/DynamicTimeWarping/notebooks/master?filepath=quickstart%2FPython.ipynb">Try online!</a> -->
 <a href="https://colab.research.google.com/drive/1-fbhBlKRrEG8jkqoBAWOAzWaOarDQcDp">Try online!</a></p>
-<h2 id="implementation-differences">Implementation differences</h2>
+<h2 id="differences-with-r">Differences with R</h2>
 <h3 id="indices-are-0-based">Indices are 0-based</h3>
 <p>R uses 1-based indexing, whereas Python uses 0-based arrays. Wherever
 indices are returned (most notably in the <code>.index1</code>, <code>.index2</code>,
 <code>.index1s</code> and <code>.index2s</code> attributes of alignments), these must be
 assumed to be 0-based in Python. Hence, indices can be used as
 subscripts in both environments as expected.</p>
-<h3 id="object-orientation">Object-orientation</h3>
+<h3 id="object-oriented-methods">Object-oriented methods</h3>
 <p>Python OO method calls use the postfix "dot" notation. This mostly
 affects the <code>plot()</code> methods. Note that non-overloaded functional
 style such as <code>dtwPlotThreeWay</code> are unaffected.  Hence:</p>
