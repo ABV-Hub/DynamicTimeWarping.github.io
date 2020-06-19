@@ -11,7 +11,7 @@
     <link rel="../img/favicon.ico">
 
     
-    <title>DTW for Python - The DTW package</title>
+    <title>DTW for Python - The DTW suite</title>
     
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -78,7 +78,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href="..">The DTW package</a>
+            <a class="navbar-brand" href="..">The DTW suite</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -154,6 +154,8 @@
                 <li class="third-level"><a href="#the-alignment-class">The alignment class</a></li>
                 <li class="third-level"><a href="#dots-vs-underscores">Dots vs underscores</a></li>
                 <li class="third-level"><a href="#plots">Plots</a></li>
+            <li class="second-level"><a href="#installation-notes">Installation notes</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -226,10 +228,10 @@ rabinerJuangStepPattern(6,&quot;c&quot;).plot()
 <h2 id="differences-with-r">Differences with R</h2>
 <h3 id="indices-are-0-based">Indices are 0-based</h3>
 <p>R uses 1-based indexing, whereas Python uses 0-based arrays. Wherever
-indices are returned (most notably in the <code>.index1</code>, <code>.index2</code>,
+indices are returned (most importantly in the <code>.index1</code>, <code>.index2</code>,
 <code>.index1s</code> and <code>.index2s</code> attributes of alignments), these must be
 assumed to be 0-based in Python. Hence, indices can be used as
-subscripts in both environments as expected.</p>
+subscripts in both environments as natural.</p>
 <h3 id="object-oriented-methods">Object-oriented methods</h3>
 <p>Python OO method calls use the postfix "dot" notation. This mostly
 affects the <code>plot()</code> methods. Note that non-overloaded functional
@@ -262,7 +264,17 @@ alignment = dtw(query, template, keep_internals=True)
 <h3 id="plots">Plots</h3>
 <p>The graphing functions have been re-implemented within the
 <code>matplotlib</code> framework. They return <code>axes</code> objects, which can be used
-to customize the plot appearance.</p></div>
+to customize the plot appearance.</p>
+<h2 id="installation-notes">Installation notes</h2>
+<p>Pre-installing the <code>scipy</code> and <code>numpy</code> packages (e.g. with <code>conda</code>)
+will speed up installation.</p>
+<p>The errors <code>undefined symbol: alloca</code> (at runtime), or about
+C99 mode (if compiling from source), are likely due to old
+system or compiler. If using <code>conda</code>, the following may help:</p>
+<pre><code>conda install gcc_linux-64
+pip install dtw-python
+</code></pre>
+<p>Note that you may have to delete cached <code>.whl</code> files.</p></div>
         
         
     </div>

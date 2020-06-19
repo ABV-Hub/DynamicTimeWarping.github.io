@@ -11,7 +11,7 @@
     <link rel="img/favicon.ico">
 
     
-    <title>Home - The DTW package</title>
+    <title>Home - The DTW suite</title>
     
 
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -78,7 +78,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href=".">The DTW package</a>
+            <a class="navbar-brand" href=".">The DTW suite</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -138,7 +138,7 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#welcome-to-the-dynamic-time-warp-project">Welcome to the Dynamic Time Warp project!</a></li>
+        <li class="first-level active"><a href="#welcome-to-the-dynamic-time-warp-suite">Welcome to the Dynamic Time Warp suite!</a></li>
             <li class="second-level"><a href="#description">Description</a></li>
                 
             <li class="second-level"><a href="#languages">Languages</a></li>
@@ -163,7 +163,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-the-dynamic-time-warp-project">Welcome to the Dynamic Time Warp project!</h1>
+<h1 id="welcome-to-the-dynamic-time-warp-suite">Welcome to the Dynamic Time Warp suite!</h1>
 <p>Comprehensive implementation of Dynamic Time Warping algorithms in R
 and Python.  Supports arbitrary local (eg symmetric, asymmetric,
 slope-limited) and global (windowing) constraints, fast native code,
@@ -171,17 +171,17 @@ several plot styles, and more.</p>
 <p><a href="images/13.html"><img alt="" src="images/thumbs/thumb_example12.png" /></a>
 <a href="images/9.html"><img alt="" src="images/thumbs/thumb_example08.png" /></a>
 <a href="images/19.html"><img alt="" src="images/thumbs/thumb_example18.png" /></a></p>
-<p>The <a href="http://cran.r-project.org/web/packages/dtw/index.html">R package
-<strong>dtw</strong></a>
-provides the most complete, freely-available (GPL) implementation of
-Dynamic Time Warping-type (DTW) algorithms up to date.  The
-<a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> module on PyPi</a>
-is its direct Python equivalent.</p>
-<p>The package is described in a <a href="http://www.jstatsoft.org/v31/i07/">companion
+<p>The package <a href="http://cran.r-project.org/web/packages/dtw/index.html"><strong>dtw</strong> for R</a>
+and <a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> for Python</a>
+provide the most complete, freely-available (GPL) implementation of
+Dynamic Time Warping-type (DTW) algorithms up to date.</p>
+<p>The R package is described in a <a href="http://www.jstatsoft.org/v31/i07/">companion
 paper</a>, including detailed
 instructions and extensive background on things like multivariate
 matching, open-end variants for real-time use, interplay between
-recursion types and length normalization, history, etc.</p>
+recursion types and length normalization, history, etc. The
+<a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> module on PyPi</a>
+is its direct Python equivalent.</p>
 <h3 id="description">Description</h3>
 <p>DTW is a family of algorithms which compute the local stretch or
 compression to apply to the time axes of two timeseries in order to
@@ -216,9 +216,6 @@ provides:</p>
 <li>the Minimum Variance Matching (MVM) algorithm <a href="http://dx.doi.org/10.1016/j.patcog.2007.03.004">(Latecki et
     al.)</a></li>
 </ul>
-<p>Multivariate timeseries can be aligned with arbitrary local distance
-definitions, leveraging the <a href="https://www.rdocumentation.org/packages/proxy/versions/0.4-23/topics/dist"><code>proxy::dist</code></a> (R) or
-<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html"><code>scipy.spatial.distance.cdist</code></a> (Python) functions. </p>
 <p>In addition to computing alignments, the package provides:</p>
 <ul>
 <li>methods for plotting alignments and warping functions in several
@@ -227,19 +224,23 @@ definitions, leveraging the <a href="https://www.rdocumentation.org/packages/pro
 <li>functions for applying a warping function, either direct or inverse;</li>
 <li>fast native (C) core.</li>
 </ul>
+<p>Multivariate timeseries can be aligned with arbitrary local distance
+definitions, leveraging the <a href="https://www.rdocumentation.org/packages/proxy/versions/0.4-23/topics/dist"><code>proxy::dist</code></a> (R) or
+<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html"><code>scipy.spatial.distance.cdist</code></a> (Python) functions. </p>
 <h3 id="languages">Languages</h3>
 <ul>
 <li>R: in the <a href="http://cran.r-project.org/web/packages/dtw/index.html">dtw package</a> on CRAN</li>
 <li>Python: as the <a href="https://pypi.org/project/dtw-python/"><code>dtw-python</code></a> pip package</li>
 </ul>
-<p>Both are available for all major platforms.</p>
+<p>Both are available for all major platforms and regularly tested and
+built via continuous integration.</p>
 <h3 id="documentation">Documentation</h3>
 <p>The best place to learn how to use the package (and a hopefully a good
 deal of background on DTW) is the companion paper <a href="http://www.jstatsoft.org/v31/i07/">Computing and
 Visualizing Dynamic Time Warping Alignments in R: The dtw
 Package</a>, which the Journal of
 Statistical Software makes available for free.</p>
-<p>To have a look at how the <em>dtw</em> package is used in domains ranging from
+<p>To have a look at how the package is used in domains ranging from
 bioinformatics to chemistry to data mining, have a look at the list of
 <a href="http://scholar.google.it/scholar?oi=bibs&amp;hl=it&amp;cites=5151555337428350289">citing
 papers</a>.</p>
@@ -261,18 +262,18 @@ obtained with this software. Please follow the directions given in
 <code>citation("dtw")</code>, i.e. cite:</p>
 <ul>
 <li>Toni Giorgino (2009). <em>Computing and Visualizing Dynamic Time Warping
-  Alignments in R: The dtw Package.</em> Journal of Statistical Software,
-  31(7), 1-24, <a href="http://dx.doi.org/10.18637/jss.v031.i07">doi:10.18637/jss.v031.i07</a>.</li>
+   Alignments in R: The dtw Package.</em> Journal of Statistical Software,
+   31(7), 1-24, <a href="http://dx.doi.org/10.18637/jss.v031.i07">doi:10.18637/jss.v031.i07</a>.</li>
 </ul>
 <p>When using partial matching (unconstrained endpoints via the
 <code>open.begin</code>/<code>open.end</code> options) and/or normalization strategies, please
 also cite:</p>
 <ul>
 <li>Paolo Tormene, Toni Giorgino, Silvana Quaglini, Mario Stefanelli
-  (2008). Matching Incomplete Time Series with Dynamic Time Warping: An
-  Algorithm and an Application to Post-Stroke Rehabilitation. Artificial
-  Intelligence in Medicine, 45(1), 11-34.
-  <a href="http://dx.doi.org/10.1016/j.artmed.2008.11.007">doi:10.1016/j.artmed.2008.11.007</a></li>
+   (2008). Matching Incomplete Time Series with Dynamic Time Warping: An
+   Algorithm and an Application to Post-Stroke Rehabilitation. Artificial
+   Intelligence in Medicine, 45(1), 11-34.
+   <a href="http://dx.doi.org/10.1016/j.artmed.2008.11.007">doi:10.1016/j.artmed.2008.11.007</a></li>
 </ul>
 <h3 id="license">License</h3>
 <p>This program is free software: you can redistribute it and/or modify
@@ -286,7 +287,7 @@ GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License
 along with this program.  If not, see <a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>.</p>
 <h3 id="contact">Contact</h3>
-<p><a href="https://sites.google.com/site/tonigiorgino/">Toni dot Giorgino</a> at
+<p><a href="https://www.giorginolab.it">Toni dot Giorgino</a> at
 gmail.com  </p>
 <p>Istituto di Biofisica (IBF-CNR)<br />
 Consiglio Nazionale delle Ricerche<br />
@@ -393,5 +394,5 @@ remote research and development on DTW-based projects through the
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-06-17 17:27:01
+Build Date UTC : 2020-06-19 09:41:45
 -->
