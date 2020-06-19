@@ -139,17 +139,15 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#welcome-to-the-dynamic-time-warp-suite">Welcome to the Dynamic Time Warp suite!</a></li>
-            <li class="second-level"><a href="#description">Description</a></li>
+            <li class="second-level"><a href="#availability">Availability</a></li>
                 
-            <li class="second-level"><a href="#languages">Languages</a></li>
+            <li class="second-level"><a href="#features">Features</a></li>
                 
             <li class="second-level"><a href="#documentation">Documentation</a></li>
                 
             <li class="second-level"><a href="#quickstart">Quickstart</a></li>
                 
             <li class="second-level"><a href="#plot-gallery">Plot gallery</a></li>
-                
-            <li class="second-level"><a href="#source-code">Source code</a></li>
                 
             <li class="second-level"><a href="#citation">Citation</a></li>
                 
@@ -164,25 +162,6 @@
         <div class="col-md-9" role="main">
 
 <h1 id="welcome-to-the-dynamic-time-warp-suite">Welcome to the Dynamic Time Warp suite!</h1>
-<p>Comprehensive implementation of Dynamic Time Warping algorithms in R
-and Python.  Supports arbitrary local (eg symmetric, asymmetric,
-slope-limited) and global (windowing) constraints, fast native code,
-several plot styles, and more.</p>
-<p><a href="images/13.html"><img alt="" src="images/thumbs/thumb_example12.png" /></a>
-<a href="images/9.html"><img alt="" src="images/thumbs/thumb_example08.png" /></a>
-<a href="images/19.html"><img alt="" src="images/thumbs/thumb_example18.png" /></a></p>
-<p>The package <a href="http://cran.r-project.org/web/packages/dtw/index.html"><strong>dtw</strong> for R</a>
-and <a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> for Python</a>
-provide the most complete, freely-available (GPL) implementation of
-Dynamic Time Warping-type (DTW) algorithms up to date.</p>
-<p>The R package is described in a <a href="http://www.jstatsoft.org/v31/i07/">companion
-paper</a>, including detailed
-instructions and extensive background on things like multivariate
-matching, open-end variants for real-time use, interplay between
-recursion types and length normalization, history, etc. The
-<a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> module on PyPi</a>
-is its direct Python equivalent.</p>
-<h3 id="description">Description</h3>
 <p>DTW is a family of algorithms which compute the local stretch or
 compression to apply to the time axes of two timeseries in order to
 optimally map one (query) onto the other (reference). DTW outputs the
@@ -190,8 +169,36 @@ remaining cumulative distance between the two and, if desired, the
 mapping itself (warping function). DTW is widely used e.g. for
 classification and clustering tasks in econometrics, chemometrics and
 general timeseries mining.</p>
-<p>The implementation in <a href="http://www.jstatsoft.org/v31/i07/">dtw</a>
-provides:</p>
+<p><a href="images/13.html"><img alt="" src="images/thumbs/thumb_example12.png" /></a>
+<a href="images/9.html"><img alt="" src="images/thumbs/thumb_example08.png" /></a>
+<a href="images/19.html"><img alt="" src="images/thumbs/thumb_example18.png" /></a></p>
+<p>The packages <a href="http://cran.r-project.org/web/packages/dtw/index.html"><strong>dtw</strong> for
+R</a> and
+<a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> for Python</a>
+provide the most complete, freely-available (GPL) implementation of
+Dynamic Time Warping-type (DTW) algorithms up to date.  They support
+arbitrary local (eg symmetric, asymmetric, slope-limited) and global
+(windowing) constraints, fast native code, several plot styles, and
+more.</p>
+<p>The R package is described in a <a href="http://www.jstatsoft.org/v31/i07/">companion
+paper</a>, including detailed
+instructions and extensive background on things like multivariate
+matching, open-end variants for real-time use, interplay between
+recursion types and length normalization, history, etc. The
+<a href="https://pypi.org/project/dtw-python/"><strong>dtw-python</strong> module on PyPi</a>
+is its direct Python equivalent.</p>
+<h3 id="availability">Availability</h3>
+<ul>
+<li><strong>R</strong>: as the <a href="http://cran.r-project.org/web/packages/dtw/index.html">dtw package</a> on CRAN</li>
+<li><strong>Python</strong>: as the <a href="https://pypi.org/project/dtw-python/"><code>dtw-python</code></a> pip package</li>
+</ul>
+<p>Both are available for all major platforms and regularly tested and
+built via continuous integration.</p>
+<p>The source code is <a href="https://github.com/DynamicTimeWarping">available on
+GitHub</a> and in the CRAN
+package.</p>
+<h3 id="features">Features</h3>
+<p>The implementation provides:</p>
 <ul>
 <li>arbitrary windowing functions (global constraints), eg. the
     <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=01163055">Sakoe-Chiba
@@ -227,35 +234,31 @@ provides:</p>
 <p>Multivariate timeseries can be aligned with arbitrary local distance
 definitions, leveraging the <a href="https://www.rdocumentation.org/packages/proxy/versions/0.4-23/topics/dist"><code>proxy::dist</code></a> (R) or
 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html"><code>scipy.spatial.distance.cdist</code></a> (Python) functions. </p>
-<h3 id="languages">Languages</h3>
-<ul>
-<li>R: in the <a href="http://cran.r-project.org/web/packages/dtw/index.html">dtw package</a> on CRAN</li>
-<li>Python: as the <a href="https://pypi.org/project/dtw-python/"><code>dtw-python</code></a> pip package</li>
-</ul>
-<p>Both are available for all major platforms and regularly tested and
-built via continuous integration.</p>
 <h3 id="documentation">Documentation</h3>
 <p>The best place to learn how to use the package (and a hopefully a good
 deal of background on DTW) is the companion paper <a href="http://www.jstatsoft.org/v31/i07/">Computing and
 Visualizing Dynamic Time Warping Alignments in R: The dtw
 Package</a>, which the Journal of
-Statistical Software makes available for free.</p>
-<p>To have a look at how the package is used in domains ranging from
+Statistical Software makes available for free. It includes detailed
+instructions and extensive background on things like multivariate
+matching, open-end variants for real-time use, interplay between
+recursion types and length normalization, history, etc.</p>
+<p>To have a look at how the <strong>dtw</strong> package is used in domains ranging from
 bioinformatics to chemistry to data mining, have a look at the list of
 <a href="http://scholar.google.it/scholar?oi=bibs&amp;hl=it&amp;cites=5151555337428350289">citing
 papers</a>.</p>
 <p>The <a href="r/">R</a> and <a href="python/">Python</a> pages contain links to
 programming language-specific documentation.</p>
+<p><strong>Note</strong>: <strong>R</strong> is the prime environment for the DTW
+suite. Python's docstrings and the API below are generated
+automatically for the sake of consistency and maintainability, and may
+not be as pretty. </p>
 <h3 id="quickstart">Quickstart</h3>
 <p>Ready-to-try examples are available in the <a href="r">DTW for R</a> and <a href="python">DTW for
 Python</a> pages.</p>
 <h3 id="plot-gallery">Plot gallery</h3>
 <p>See a <a href="images/">gallery of sample plots</a>, straight out of
 the examples in the documentation.</p>
-<h3 id="source-code">Source code</h3>
-<p>The source code is <a href="https://github.com/DynamicTimeWarping">available on
-GitHub</a> and in the CRAN
-package.</p>
 <h3 id="citation">Citation</h3>
 <p>If you use <em>dtw</em>, do cite it in any publication reporting results
 obtained with this software. Please follow the directions given in
@@ -394,5 +397,5 @@ remote research and development on DTW-based projects through the
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-06-19 09:41:45
+Build Date UTC : 2020-06-19 10:11:07
 -->
